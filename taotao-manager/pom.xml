@@ -17,7 +17,16 @@
         <module>taotao-manager-pojo</module>
         <module>taotao-manager-interface</module>
         <module>taotao-manager-service</module>
+        <module>taotao-manager-web</module>
     </modules>
     <packaging>pom</packaging>
+    <dependencies>
+        <!-- 添加common依赖,并传递到下面的modules工程中-->
+        <dependency>
+            <artifactId>taotao-common</artifactId>
+            <groupId>com.taotao</groupId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>

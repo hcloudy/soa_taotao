@@ -11,5 +11,13 @@
 
     <artifactId>taotao-manager-interface</artifactId>
 
+    <dependencies>
+        <!--依赖pojo-->
+        <dependency>
+            <artifactId>taotao-manager-pojo</artifactId>
+            <groupId>com.taotao</groupId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
