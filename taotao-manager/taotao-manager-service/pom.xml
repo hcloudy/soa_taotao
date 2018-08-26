@@ -10,6 +10,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>taotao-manager-service</artifactId>
+    <packaging>war</packaging>
 
     <dependencies>
         <!--添加接口的依赖-->
