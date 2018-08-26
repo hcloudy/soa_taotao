@@ -23,15 +23,16 @@
         <property name="prefix" value="/WEB-INF/jsp/"></property>
         <property name="suffix" value=".jsp"></property>
     </bean>
+    <!--配置静态资源解析器-->
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
 
     <!--引入dubbo服务-->
     <dubbo:application name="taotao-manager-web"/>
     <dubbo:registry protocol="zookeeper" address="192.168.1.123:2181"/>
 
-    <dubbo:reference interface="com.taotao.service.TestService" id="testService"/>
+    <dubbo:reference interface="com.taotao.service.TestService" id="testService" timeout="300000"/>
+    <dubbo:reference interface="com.taotao.service.ItemService" id="itemService" timeout="300000"/>
 
-    <!--配置静态资源解析器-->
-    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
-    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
 
 </beans>
