@@ -40,6 +40,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>springmvc</servlet-name>
+        <!-- /*表示拦截所有，包括转发的jsp页面，不能这么用-->
+        <!-- / 表示拦截所有，但是不包括转发的jsp页面-->
         <url-pattern>/</url-pattern>
     </servlet-mapping>
 </web-app>
