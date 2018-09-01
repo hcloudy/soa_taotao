@@ -3,25 +3,26 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>taotao-parent</artifactId>
+        <artifactId>taotao-content</artifactId>
         <groupId>com.taotao</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <artifactId>taotao-content-service</artifactId>
     <groupId>com.taotao</groupId>
-    <artifactId>taotao-manager-web</artifactId>
     <packaging>war</packaging>
+
     <dependencies>
-        <!--依赖interface-->
+        <!--添加接口的依赖-->
         <dependency>
-            <artifactId>taotao-manager-interface</artifactId>
+            <artifactId>taotao-content-interface</artifactId>
             <groupId>com.taotao</groupId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-        <!--依赖interface-->
+        <!--添加dao的依赖-->
         <dependency>
-            <artifactId>taotao-content-interface</artifactId>
+            <artifactId>taotao-manager-dao</artifactId>
             <groupId>com.taotao</groupId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
@@ -54,27 +55,7 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
         </dependency>
-        <!-- JSP相关 -->
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jsp-api</artifactId>
-            <!-- 只是在本地编译的时候要用到，不会打包到服务器tomcat中，因为tomcat中有，再打包上去会报错。-->
-            <scope>provided</scope>
-        </dependency>
-        <!-- 文件上传组件 -->
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-        </dependency>
+
         <!-- dubbo相关 -->
         <dependency>
             <groupId>com.alibaba</groupId>
@@ -99,25 +80,5 @@
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
         </dependency>
-        <!--分页插件 -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-        </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <!--配置tomcat7插件-->
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <configuration>
-                    <port>8081</port>
-                    <path>/</path>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-
 </project>

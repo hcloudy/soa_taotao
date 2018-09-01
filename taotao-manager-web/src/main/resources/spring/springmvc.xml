@@ -33,6 +33,7 @@
 
     <dubbo:reference interface="com.taotao.service.ItemService" id="itemService" timeout="300000"/>
     <dubbo:reference interface="com.taotao.service.TestService" id="testService" timeout="300000"/>
+    <dubbo:reference interface="com.taotao.content.service.ContentCategoryService" id="contentCategoryService" timeout="300000"/>
 
 
 </beans>
