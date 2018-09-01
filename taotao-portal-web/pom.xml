@@ -6,19 +6,21 @@
         <artifactId>taotao-parent</artifactId>
         <groupId>com.taotao</groupId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../taotao-parent/pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <artifactId>taotao-portal-web</artifactId>
     <groupId>com.taotao</groupId>
-    <artifactId>taotao-manager-web</artifactId>
     <packaging>war</packaging>
+
     <dependencies>
         <!--依赖interface-->
-        <dependency>
+       <!-- <dependency>
             <artifactId>taotao-manager-interface</artifactId>
             <groupId>com.taotao</groupId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -106,12 +108,11 @@
                 <groupId>org.apache.tomcat.maven</groupId>
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <configuration>
-                    <port>8081</port>
+                    <port>8082</port>
                     <path>/</path>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
 
 </project>
