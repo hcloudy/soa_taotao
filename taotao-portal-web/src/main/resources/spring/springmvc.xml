@@ -15,6 +15,8 @@
            				   http://www.springframework.org/schema/context/spring-context.xsd">
     <!-- 配置扫描包 -->
     <context:component-scan base-package="com.taotao.portal.controller"></context:component-scan>
+    <!--扫描配置文件-->
+    <context:property-placeholder location="classpath:properties/*.properties"/>
     <!-- 配置注解驱动 -->
     <mvc:annotation-driven></mvc:annotation-driven>
 
@@ -28,7 +30,7 @@
     <dubbo:application name="taotao-portal-web"/>
     <dubbo:registry protocol="zookeeper" address="192.168.1.123:2181"/>
 
-    <!--<dubbo:reference interface="com.taotao.service.TestService" id="testService" timeout="300000"/>-->
+    <dubbo:reference interface="com.taotao.content.service.ContentService" id="contentService" timeout="300000"/>
 
 
 </beans>

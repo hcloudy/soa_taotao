@@ -16,11 +16,11 @@
 
     <dependencies>
         <!--依赖interface-->
-       <!-- <dependency>
-            <artifactId>taotao-manager-interface</artifactId>
+        <dependency>
+            <artifactId>taotao-content-interface</artifactId>
             <groupId>com.taotao</groupId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>-->
+        </dependency>
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -70,6 +70,12 @@
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
+        </dependency>
+        <!--lombok插件使用-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.10</version>
         </dependency>
         <!-- dubbo相关 -->
         <dependency>
