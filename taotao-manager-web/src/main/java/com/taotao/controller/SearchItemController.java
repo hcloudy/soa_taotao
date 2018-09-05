@@ -1,6 +1,7 @@
 package com.taotao.controller;
 
 import com.taotao.common.pojo.TaotaoResult;
+import com.taotao.search.service.ItemSearchService;
 import com.taotao.search.service.SearchItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,13 +13,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SearchItemController {
 
     @Autowired
-    private SearchItemService searchItemService;
+    private ItemSearchService itemSearchService;
 
     @RequestMapping(value = "/index/import",method = RequestMethod.POST)
     @ResponseBody
     public TaotaoResult importAll() {
         try {
-            TaotaoResult result = searchItemService.importAll();
+            TaotaoResult result = itemSearchService.importAll();
             return result;
         }catch (Exception e) {
             e.printStackTrace();
