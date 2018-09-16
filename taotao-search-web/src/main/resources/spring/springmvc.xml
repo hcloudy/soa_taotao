@@ -26,6 +26,7 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
+    <bean class="com.taotao.search.exception.GlobalExceptionResolver"/>
     <!--引入dubbo服务-->
     <dubbo:application name="taotao-search-web"/>
     <dubbo:registry protocol="zookeeper" address="192.168.1.123:2181"/>

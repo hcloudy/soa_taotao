@@ -21,6 +21,7 @@ public class SearchController {
     public String search(@RequestParam("q") String keywords,
                          @RequestParam(defaultValue = "1") Integer page,
                          @RequestParam(defaultValue = "30") Integer rows, Model model) throws Exception {
+//        int i = 10/0;
         try {
             keywords = new String(keywords.getBytes("iso8859-1"),"utf-8");
         } catch (UnsupportedEncodingException e) {
@@ -31,6 +32,7 @@ public class SearchController {
         model.addAttribute("query", keywords);
         model.addAttribute("totalPages", search.getRecordCount());
         model.addAttribute("itemList",search.getSearchItemList());
+        model.addAttribute("page",page);
         return "search";
     }
 }

@@ -15,4 +15,12 @@ public class SearchItem implements Serializable{
     private String category_name;
     private String item_desc;
 
+    public String getImage() {
+        if(null != image && !image.equals("")) {
+            String[] strings = image.split(",");
+            return strings[0];
+        }
+        return image;
+    }
+
 }

@@ -1,6 +1,7 @@
 package com.taotao.search.service.impl;
 
 import com.taotao.common.pojo.SearchResult;
+import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.search.dao.SearchItemDao;
 import com.taotao.search.service.SearchItemService;
 import org.apache.solr.client.solrj.SolrQuery;
@@ -38,6 +39,12 @@ public class SearchItemServiceImpl implements SearchItemService {
         }
         result.setTotalPages(totalPages);
         result.setCurPage(page);
+        return result;
+    }
+
+    @Override
+    public TaotaoResult updateSearchItemById(Long itemId) throws Exception {
+        TaotaoResult result = searchItemDao.updateSearchItemByItemId(itemId);
         return result;
     }
 }

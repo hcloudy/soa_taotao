@@ -2,13 +2,16 @@ package com.taotao.search.dao.impl;
 
 import com.taotao.common.pojo.SearchItem;
 import com.taotao.common.pojo.SearchResult;
+import com.taotao.common.pojo.TaotaoResult;
 import com.taotao.search.dao.SearchItemDao;
+import com.taotao.search.mapper.ItemSearchMapper;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServer;
 import org.apache.solr.client.solrj.SolrServerException;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.common.SolrDocument;
 import org.apache.solr.common.SolrDocumentList;
+import org.apache.solr.common.SolrInputDocument;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +21,8 @@ import java.util.Map;
 
 @Repository
 public class SearchItemDaoImpl implements SearchItemDao{
+    @Autowired
+    private ItemSearchMapper itemSearchMapper;
 
     @Autowired
     private SolrServer solrServer;
@@ -53,5 +58,28 @@ public class SearchItemDaoImpl implements SearchItemDao{
         long numFound = solrDocuments.getNumFound();
         searchResult.setRecordCount(numFound);
         return searchResult;
+    }
+
+    /**
+     * 更新索引库
+     * @param itemId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public TaotaoResult updateSearchItemByItemId(Long itemId) throws Exception{
+        SearchItem item = itemSearchMapper.getItemByItemId(itemId);
+        SolrInputDocument document = new SolrInputDocument();
+        //3.向文档中添加域
+        document.addField("id", item.getId());
+        document.addField("item_category_name", item.getCategory_name());
+        document.addField("item_image", item.getImage());
+        document.addField("item_desc", item.getItem_desc());
+        document.addField("item_sell_point", item.getSell_point());
+        document.addField("item_title", item.getTitle());
+        document.addField("item_price", item.getPrice());
+        solrServer.add(document);
+        solrServer.commit();
+        return TaotaoResult.ok();
     }
 }
