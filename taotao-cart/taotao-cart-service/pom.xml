@@ -3,25 +3,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>taotao-parent</artifactId>
+        <artifactId>taotao-cart</artifactId>
         <groupId>com.taotao</groupId>
-        <version>0.0.1-SNAPSHOT</version>
-        <relativePath>../taotao-parent/pom.xml</relativePath>
+        <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>taotao-item-web</artifactId>
-    <groupId>com.taotao</groupId>
+    <artifactId>taotao-cart-service</artifactId>
     <packaging>war</packaging>
 
+
     <dependencies>
-        <!--依赖interface-->
+        <!--添加接口的依赖-->
         <dependency>
-            <artifactId>taotao-manager-interface</artifactId>
+            <artifactId>taotao-cart-interface</artifactId>
+            <groupId>com.taotao</groupId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <!--添加dao的依赖-->
+        <dependency>
+            <artifactId>taotao-manager-dao</artifactId>
             <groupId>com.taotao</groupId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
-
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -51,49 +55,37 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context-support</artifactId>
         </dependency>
-        <!--active mq -->
+        <!--mybatis-->
         <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-all</artifactId>
-            <exclusions>
-                <exclusion>
-                    <artifactId>org.slf4j</artifactId>
-                    <groupId>slf4j-log4j12</groupId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-        <!-- JSP相关 -->
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <scope>provided</scope>
+            <groupId>org.mybatis</groupId>
+            <artifactId>mybatis-spring</artifactId>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jsp-api</artifactId>
-            <!-- 只是在本地编译的时候要用到，不会打包到服务器tomcat中，因为tomcat中有，再打包上去会报错。-->
-            <scope>provided</scope>
+            <groupId>com.github.miemiedev</groupId>
+            <artifactId>mybatis-paginator</artifactId>
         </dependency>
-        <!-- 文件上传组件 -->
         <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
         </dependency>
-        <!--lombok插件使用-->
+        <!-- MySql -->
         <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.16.10</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-log4j12</artifactId>
-                </exclusion>
-            </exclusions>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
+        <!-- 连接池 -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+        <!-- Redis客户端 -->
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
         </dependency>
         <!-- dubbo相关 -->
         <dependency>
@@ -119,30 +111,5 @@
             <groupId>com.github.sgroschupf</groupId>
             <artifactId>zkclient</artifactId>
         </dependency>
-        <!--freemaker-->
-        <dependency>
-            <groupId>org.freemarker</groupId>
-            <artifactId>freemarker</artifactId>
-        </dependency>
-        <!--分页插件 -->
-        <dependency>
-            <groupId>com.github.pagehelper</groupId>
-            <artifactId>pagehelper</artifactId>
-        </dependency>
     </dependencies>
-    <build>
-        <plugins>
-            <!--配置tomcat7插件-->
-            <plugin>
-                <groupId>org.apache.tomcat.maven</groupId>
-                <artifactId>tomcat7-maven-plugin</artifactId>
-                <configuration>
-                    <port>8086</port>
-                    <path>/</path>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
-
-
 </project>
