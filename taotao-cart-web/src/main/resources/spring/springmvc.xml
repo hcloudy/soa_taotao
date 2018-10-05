@@ -26,17 +26,18 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
     <!--配置静态资源解析器-->
-    <mvc:resources mapping="/js/**" location="/js/"/>
+  <!--  <mvc:resources mapping="/js/**" location="/js/"/>
     <mvc:resources mapping="/css/**" location="/css/"/>
-    <mvc:resources mapping="/images/**" location="/images/"/>
+    <mvc:resources mapping="/images/**" location="/images/"/>-->
 
 
     <!--引入dubbo服务-->
     <dubbo:application name="taotao-cart-web"/>
     <dubbo:registry protocol="zookeeper" address="192.168.1.123:2181"/>
 
-   <!-- <dubbo:reference interface="com.taotao.sso.service.UserRegisterService" id="userRegisterService" timeout="300000"/>
-    <dubbo:reference interface="com.taotao.sso.service.UserLoginService" id="userLoginService" timeout="300000"/>-->
+    <dubbo:reference interface="com.taotao.cart.service.CartService" id="cartService" timeout="300000"/>
+    <dubbo:reference interface="com.taotao.sso.service.UserLoginService" id="userLoginService" timeout="300000"/>
+    <dubbo:reference interface="com.taotao.service.ItemService" id="itemService" timeout="300000"/>
 
 
 </beans>

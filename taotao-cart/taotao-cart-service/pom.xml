@@ -21,11 +21,11 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <!--添加dao的依赖-->
-        <dependency>
+        <!--<dependency>
             <artifactId>taotao-manager-dao</artifactId>
             <groupId>com.taotao</groupId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
         <!-- Spring -->
         <dependency>
             <groupId>org.springframework</groupId>

@@ -8,11 +8,8 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta name="format-detection" content="telephone=no">
-
-<link rel="stylesheet" type="text/css"
-	href="/css/base.css">
-<link href="/css/initcart20150123.css" type="text/css"
-	rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/css/base.css">
+<link href="/css/initcart20150123.css" type="text/css" rel="stylesheet">
 <title>商品已成功加入购物车</title>
 <style id="style-1-cropbar-clipper">
 /* Copyright 2014 Evernote Corporation. All rights reserved. */

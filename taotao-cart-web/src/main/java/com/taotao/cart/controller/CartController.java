@@ -31,9 +31,9 @@ public class CartController {
     private ItemService itemService;
     @Value("${TT_TOKEN_KEY}")
     private String TT_TOKEN_KEY;
-    @Value("${TT_CART_KEY")
+    @Value("${TT_CART_KEY}")
     private String TT_CART_KEY;
-    @Value("${COOKIE_EXPIRE")
+    @Value("${COOKIE_EXPIRE}")
     private Integer COOKIE_EXPIRE;
 
     /**
@@ -59,7 +59,7 @@ public class CartController {
             List<TbItem> tbItems = getCookieCartList(request);
             boolean flag = false;
             for(TbItem item : tbItems) {
-                if(item.getId() == itemId) {
+                if(item.getId() == itemId.longValue()) {
                     item.setNum(item.getNum()+num);
                     flag = true;
                     break;
@@ -135,7 +135,7 @@ public class CartController {
         List<TbItem> cartList = getCookieCartList(request);
         boolean flag = false;
         for(TbItem item : cartList) {
-            if(item.getId() == itemId) {
+            if(item.getId() == itemId.longValue()) {
                 cartList.remove(item);
                 flag = true;
                 break;
@@ -155,13 +155,14 @@ public class CartController {
         return new ArrayList<>();
     }
 
+    //更新购物车商品数量
     private void updateCookieItemCart(Long itemId, Integer num, HttpServletRequest request, HttpServletResponse response) {
         // 获取购物车列表商品
         List<TbItem> cartList = getCookieCartList(request);
         boolean flag = false;
         for(TbItem item : cartList) {
-            if(item.getId() == itemId) {
-                item.setNum(num);
+            if(item.getId() == itemId.longValue()) {
+                item.setNum(item.getNum()+num);
                 flag = true;
                 break;
             }

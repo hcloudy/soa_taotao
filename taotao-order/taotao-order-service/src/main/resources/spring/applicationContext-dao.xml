@@ -15,30 +15,26 @@
 						   http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 						   http://www.springframework.org/schema/util
 						   http://www.springframework.org/schema/util/spring-util-4.0.xsd">
-
-    <!-- 配置事务 -->
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource"></property>
+    <!-- 扫描配置文件-->
+    <context:property-placeholder location="classpath:properties/*.properties"/>
+    <!--配置数据源-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="url" value="${jdbc.url}" />
+        <property name="username" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+        <property name="driverClassName" value="${jdbc.driver}" />
+        <property name="maxActive" value="10" />
+        <property name="minIdle" value="5" />
     </bean>
-    <!-- 配置通知 -->
-    <tx:advice id="txAdvice" transaction-manager="transactionManager">
-        <tx:attributes>
-            <!-- 传播行为 -->
-            <tx:method name="save*" propagation="REQUIRED"/>
-            <tx:method name="insert*" propagation="REQUIRED"/>
-            <tx:method name="delete*" propagation="REQUIRED"/>
-            <tx:method name="update*" propagation="REQUIRED"/>
-            <tx:method name="create*" propagation="REQUIRED"/>
-            <tx:method name="add*" propagation="REQUIRED"/>
-            <tx:method name="save*" propagation="REQUIRED"/>
-            <tx:method name="find*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
-            <tx:method name="get*" propagation="SUPPORTS" read-only="true"/>
-        </tx:attributes>
-    </tx:advice>
-
-    <!-- 配置切面 -->
-    <aop:config>
-        <aop:advisor advice-ref="txAdvice" pointcut="execution(* com.taotao.cart.service.*.*(..))"/>
-    </aop:config>
+    <!-- 让spring管理连接池 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!-- 关联数据库连接池 -->
+        <property name="dataSource" ref="dataSource"></property>
+        <!-- 加载全局配置文件 -->
+        <property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"></property>
+    </bean>
+    <!--扫描mapper文件-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.taotao.mapper"></property>
+    </bean>
 </beans>

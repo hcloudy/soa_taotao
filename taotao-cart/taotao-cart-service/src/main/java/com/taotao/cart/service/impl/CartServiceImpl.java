@@ -16,6 +16,7 @@ import java.util.Map;
 
 @Service
 public class CartServiceImpl implements CartService {
+
     @Autowired
     private JedisClient jedisClient;
     @Value("${TT_CART_REDIS}")
@@ -26,13 +27,13 @@ public class CartServiceImpl implements CartService {
         TbItem item = queryItemByItemIdAndUserId(tbItem.getId(), userId);
         if(item != null) {
             item.setNum(item.getNum()+num);
-            jedisClient.hset(TT_CART_REDIS+":"+userId+"",item.getId()+"", JsonUtils.objectToJson(item));
+            jedisClient.hset(TT_CART_REDIS+":"+userId+"",tbItem.getId()+"", JsonUtils.objectToJson(item));
         }else {
-            item.setNum(num);
-            if(item.getImage() != null) {
-                item.setImage(item.getImage().split(",")[0]);
+            tbItem.setNum(num);
+            if(tbItem.getImage() != null) {
+                tbItem.setImage(tbItem.getImage().split(",")[0]);
             }
-            jedisClient.hset(TT_CART_REDIS+":"+userId+"",item.getId()+"", JsonUtils.objectToJson(item));
+            jedisClient.hset(TT_CART_REDIS+":"+userId+"",tbItem.getId()+"", JsonUtils.objectToJson(tbItem));
         }
         return TaotaoResult.ok();
     }
